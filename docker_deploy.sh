@@ -1,15 +1,12 @@
 #!/bin/bash
 set -e
 
-# Go to app directory
-cd /home/ubuntu/app
-
 # Stop old container if running
 docker stop mynginx || true
 docker rm mynginx || true
 
-# Build new Docker image
-docker build -t mynginx:latest .
+# Pull latest image
+docker pull kavi466/footcap:v2.0
 
-# Run container on port 80
-docker run -d --name mynginx -p 80:80 mynginx:latest
+# Run container
+docker run -d --name mynginx -p 80:80 kavi466/footcap:v2.0
